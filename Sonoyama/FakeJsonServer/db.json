@@ -1,0 +1,18 @@
+{
+  "selections": [
+    {
+      "name": "Your Selection Name",
+      "todoTask": [
+        {
+          "name": "Your Option Name",
+          "description": "Your Option Description",
+          "tags": [
+            "#tag1",
+            "#tag2",
+            "#tag3"
+          ]
+        }
+      ]
+    }
+  ]
+}
