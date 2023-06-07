@@ -1,0 +1,6 @@
+<div class="w-100 flex-colomn mh-100" >
+  <button class="createButton" (click)="createTodo()">Create Todo</button>
+  <div class="" *ngIf="data">
+    <app-todo-item *ngFor="let todo of data" [data]="todo"></app-todo-item>
+  </div>
+</div>
