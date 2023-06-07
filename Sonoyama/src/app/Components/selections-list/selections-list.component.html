@@ -1,12 +1,11 @@
 <div class="wrapper" >
-  <div class="itemWrapper">
-    <button class="createButton" onclick="createSelection()">Create Selection</button>
-  </div>
   <div *ngIf="selections">
     <div class="itemWrapper" *ngFor="let selection of selections">
       <h1>{{selection.name}}</h1>
-      <app-todos-list [data] = "selection.todos"></app-todos-list>
+      <app-todos-list [data] = "selection.todoTask"></app-todos-list>
     </div>
   </div>
-  
+  <div class="itemWrapper">
+    <button class="createButton" onclick="createSelection()">Create Selection</button>
+  </div>
 </div>

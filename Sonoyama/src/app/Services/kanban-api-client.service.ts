@@ -11,12 +11,12 @@ export class KanbanApiClientService {
   }
 
   getSelections(): Observable<any[]> {
-    return this.httpClient.get<any[]>('http://localhost:3000/board/selections');
+    return this.httpClient.get<any[]>('http://localhost:3000/selections');
   }
   createSelection(): Observable<any> {
-    return this.httpClient.post<any>('http://localhost:3000/board/selections', {});
+    return this.httpClient.post<any>('http://localhost:3000/selections', {});
   }
   createTodo(): Observable<any> {
-    return this.httpClient.post<any>('http://localhost:3000/board/todos', {});
+    return this.httpClient.post<any>('http://localhost:3000/todos', {});
   }
 }
