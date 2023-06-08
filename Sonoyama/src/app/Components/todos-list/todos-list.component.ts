@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, ElementRef, HostListener, Input, ɵresetCompiledComponents } from '@angular/core';
 import { KanbanApiClientService } from 'src/app/Services/kanban-api-client.service';
 
 @Component({
@@ -8,13 +8,34 @@ import { KanbanApiClientService } from 'src/app/Services/kanban-api-client.servi
 })
 export class TodosListComponent {
   @Input() data!: any[]
+  showCard = false;
+  name = '';
+  description = '';
+  private containerRef!: ElementRef<HTMLElement>;;
+
   constructor(private readonly kanbanService: KanbanApiClientService) {
 
   }
 
-  createTodo()  {
-    this.kanbanService.createTodo().subscribe(todo => {
-      this.data.unshift(todo)
-    })
+  showForm() {
+    this.showCard = true;
+  }
+
+  @HostListener('document:keydown.escape')
+  closeCard() {
+    this.showCard = false;
+  }
+
+  onSubmit() {
+    if (this.name || this.description) {
+      // Handle form submission logic here
+      console.log('Submitted:', this.name, this.description);
+      this.kanbanService.createTodo(0, { name: this.name, description: this.description }).subscribe(todo => {
+        this.data.unshift(todo)
+        this.name = "";
+        this.description = "";
+      })
+      this.closeCard();
+    }
   }
 }

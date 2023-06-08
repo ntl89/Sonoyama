@@ -10,6 +10,8 @@ import { SelectionsListComponent } from './Components/selections-list/selections
 import { TodosListComponent } from './Components/todos-list/todos-list.component';
 import { TodoItemComponent } from './Components/todo-item/todo-item.component';
 
+import { FormsModule } from '@angular/forms';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -22,7 +24,8 @@ import { TodoItemComponent } from './Components/todo-item/todo-item.component';
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -15,9 +15,9 @@ export class SelectionsListComponent {
     });
   }
   createSelection() {
-    this.kanbanService.createSelection().subscribe(selection => {
-      this.selections.unshift(selection)
-    })
+    // this.kanbanService.createSelection().subscribe(selection => {
+    //   this.selections.unshift(selection)
+    // })
   }
 }
 

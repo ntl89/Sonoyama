@@ -1,6 +1,31 @@
-<div class="w-100 flex-colomn mh-100" >
-  <button class="createButton" (click)="createTodo()">Create Todo</button>
-  <div class="" *ngIf="data">
-    <app-todo-item *ngFor="let todo of data" [data]="todo"></app-todo-item>
+<div class="w-100 flex-colomn mh-100">
+  <!-- Button -->
+  <button (click)="showForm()" *ngIf="!showCard">Create Todo</button>
+
+  <!-- Bootstrap Card Form -->
+  <div class="card py-2" *ngIf="showCard" #container>
+    <div class="card-body">
+      <form (ngSubmit)="onSubmit()" (keydown.escape)="closeCard()">
+        <div class="form-group">
+          <label for="name">Name</label>
+          <input type="text" class="form-control" id="name" [(ngModel)]="name" name="name">
+        </div>
+        <div class="form-group">
+          <label for="description">Description</label>
+          <textarea class="form-control" id="description" [(ngModel)]="description" name="description"></textarea>
+        </div>
+        <div class="d-flex justify-content-between align-items-center mt-2">
+          <button type="submit" class="btn btn-primary">Submit</button>
+          <button type="button" class="btn-close" aria-label="Close" (click)="closeCard()"></button>
+        </div>
+      </form>
+    </div>
+  </div>
+  <div *ngIf="data">
+    <div class="py-1" *ngFor="let todo of data">
+
+      <app-todo-item [data]="todo"></app-todo-item>
+
+    </div>
   </div>
 </div>
