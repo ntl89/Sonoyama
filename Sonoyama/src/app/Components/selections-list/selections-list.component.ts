@@ -11,9 +11,15 @@ export class SelectionsListComponent {
 
   constructor(private readonly kanbanService: KanbanApiClientService) {
     this.kanbanService.getSelections().subscribe(selections => {
-      this.selections = selections
-    });
-  }
+      this.selections = selections.map(selection => {
+        return {
+          ...selection,
+          isvisibleinput: false
+        }
+        })
+      })
+    }
+  
   createSelection() {
     // this.kanbanService.createSelection().subscribe(selection => {
     //   this.selections.unshift(selection)
