@@ -19,4 +19,7 @@ export class KanbanApiClientService {
   createTodo(id: number, todoitem: any): Observable<any> {
     return this.httpClient.post<any>(`http://localhost:3000/selections/${id}/todos`, todoitem);
   }
+  updateSelection(id: number, selection: any): Observable<any> {
+    return this.httpClient.put<any>(`http://localhost:3000/selections/${id}`, selection);
+  }
 }

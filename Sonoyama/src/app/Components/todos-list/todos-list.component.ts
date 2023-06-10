@@ -8,6 +8,7 @@ import { KanbanApiClientService } from 'src/app/Services/kanban-api-client.servi
 })
 export class TodosListComponent {
   @Input() data!: any[]
+  @Input() selectionId!: number
   showCard = false;
   name = '';
   description = '';
@@ -30,8 +31,8 @@ export class TodosListComponent {
     if (this.name || this.description) {
       // Handle form submission logic here
       console.log('Submitted:', this.name, this.description);
-      this.kanbanService.createTodo(0, { name: this.name, description: this.description }).subscribe(todo => {
-        this.data.unshift(todo)
+      this.kanbanService.createTodo(this.selectionId, { name: this.name, description: this.description }).subscribe(todo => {
+        this.data.push(todo)
         this.name = "";
         this.description = "";
       })

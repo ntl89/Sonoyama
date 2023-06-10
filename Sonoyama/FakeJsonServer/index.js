@@ -22,6 +22,8 @@ let selections = [
 // Get all selections
 app.get('/selections', (req, res) => {
   res.json(selections);
+  console.log("_-----_");
+  console.log(selections);
 });
 
 // Get a specific selection by its index
@@ -51,7 +53,7 @@ app.put('/selections/:index', (req, res) => {
   if (!selections[index]) {
     res.status(404).json({ error: 'Selection not found' });
   } else {
-    selections[index] = updatedSelection;
+    selections[index].name = updatedSelection.name;
     res.json(updatedSelection);
   }
 });
@@ -97,14 +99,17 @@ app.get('/selections/:index/todos/:todoIndex', (req, res) => {
 app.post('/selections/:index/todos', (req, res) => {
   const index = req.params.index;
   const newTodo = req.body;
+  console.log(newTodo);
   const selection = selections[index];
 
   if (!selection) {
     res.status(404).json({ error: 'Selection not found' });
   } else {
+    console.log(selection);
     selection.todoTask.push(newTodo);
     res.status(201).json(newTodo);
   }
+  console.log(selections);
 });
 
 // Update an existing todo within a selection

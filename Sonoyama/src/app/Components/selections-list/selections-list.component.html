@@ -1,11 +1,23 @@
-<div class="wrapper" >
-  <div *ngIf="selections" class="overflow-auto ">
-    <div class="itemWrapper px-3" *ngFor="let selection of selections">
-      <h1>{{selection.name}}</h1>
-      <app-todos-list [data] = "selection.todoTask"></app-todos-list>
+<div class="wrapper">
+  <div *ngIf="selections" class="wrapper">
+    <div class="itemWrapper px-3 " *ngFor="let selection of selections; let i = index">
+      <div class="" *ngIf="!selection.isvisibleinput">
+        <h1 (click)="clickOnNameOfSelection(selection)" class="text-break" style="user-select: none;">{{selection.name}}</h1>
+      </div>
+      <div class="" *ngIf="selection.isvisibleinput">
+        <input class="inputField" type="text" [(ngModel)]="selection.name" (keyup.enter)="onEnterSelection(i, selection)">
+      </div>
+      <div class="todoList w-100 overflow-auto">
+        <app-todos-list [selectionId]="i" [data]="selection.todoTask"></app-todos-list>
+      </div>
     </div>
   </div>
-  <div class="itemWrapper  px-3">
-    <button class="createButton" onclick="createSelection()">Create Selection</button>
+  <div class="itemWrapper px-3">
+    <div class="" *ngIf="!isNewInputVisible">
+      <button class="createButton" (click)="onCreateButtonClick()">Create Selection</button>
+    </div>
+    <div class="" *ngIf="isNewInputVisible">
+      <input class="inputField" type="text" [(ngModel)]="newSelectionName" (keyup.enter)="onEnter()">
+    </div>
   </div>
 </div>
